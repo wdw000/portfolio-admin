@@ -1,5 +1,12 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import store from "./store";
+import { createPinia } from "pinia";
+import axios from "axios";
 
-createApp(App).use(store).mount("#app");
+const pinia = createPinia();
+
+export const instance = axios.create({
+  baseURL: process.env.VUE_APP_API_URL,
+});
+
+createApp(App).use(pinia).mount("#app");
