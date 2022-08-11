@@ -3,7 +3,11 @@
     <div class="item-box">
       <img :src="item.imgSrc" />
       <p>{{ item.title }}</p>
-      <p>{{ item.imgURL }}</p>
+      <p>
+        <a :href="item.imgURL" target="_blank" rel="noopener noreferrer">{{
+          item.imgURL
+        }}</a>
+      </p>
     </div>
     <div class="btn-group">
       <button @click="deleteLink(item.title)">remove</button>
