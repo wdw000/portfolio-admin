@@ -12,7 +12,6 @@ export const useSkillStore = defineStore("skill", {
       data: [] as SkillData[],
     };
   },
-
   actions: {
     async getData() {
       const res = await instance.get("skills");

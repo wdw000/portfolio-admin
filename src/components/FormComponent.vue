@@ -141,6 +141,7 @@ import { instance } from "@/main";
 import { useSkillStore } from "@/store/skill";
 import { useLearningStore } from "@/store/learning";
 import { useLinkStore } from "@/store/link";
+import { useProjectStore } from "@/store/project";
 
 export default defineComponent({
   name: "FormComponent",
@@ -159,7 +160,13 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapStores(useNavStore, useSkillStore, useLearningStore, useLinkStore),
+    ...mapStores(
+      useNavStore,
+      useSkillStore,
+      useLearningStore,
+      useLinkStore,
+      useProjectStore
+    ),
   },
   methods: {
     async handleSubmit() {
@@ -277,8 +284,8 @@ export default defineComponent({
       }
 
       formData.append("title", this.title);
-      for (const skill in this.skills) {
-        formData.append("skills", this.skills[skill]);
+      for (const skill of this.skills) {
+        formData.append("skills", skill);
       }
       for (const fun in this.functions) {
         formData.append("functions", this.functions[fun]);
@@ -301,6 +308,7 @@ export default defineComponent({
         this.pdf = true;
         this.gitUrl = "";
         this.webUrl = "";
+        this.projectStore.getData();
       } else {
         console.log("post projects fail");
       }
@@ -334,16 +342,13 @@ export default defineComponent({
 
     handelSkillItem(e: Event) {
       const target = e.target as HTMLInputElement;
-      console.log(target.checked, target.id);
 
       if (target.checked) {
         this.skills.push(target.id);
       } else {
-        const idx = this.skills.indexOf(target.id);
+        const idx = this.skills.findIndex((item) => item === target.id);
         this.skills.splice(idx, 1);
       }
-
-      console.log(this.skills);
     },
   },
 });
