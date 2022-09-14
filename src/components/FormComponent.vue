@@ -205,7 +205,6 @@ export default defineComponent({
 
       if (res.status === 201) {
         console.log("post skills success");
-        console.log(res.data);
         this.title = "";
         inputImg.value = "";
         this.skillStore.getData();
@@ -277,9 +276,11 @@ export default defineComponent({
         }
       }
 
-      if (inputPdf.files) {
-        for (const file of inputPdf.files) {
-          formData.append("pdf", file);
+      if (this.pdf) {
+        if (inputPdf.files) {
+          for (const file of inputPdf.files) {
+            formData.append("pdf", file);
+          }
         }
       }
 
