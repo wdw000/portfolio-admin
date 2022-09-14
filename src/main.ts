@@ -6,7 +6,7 @@ import axios from "axios";
 const pinia = createPinia();
 
 export const instance = axios.create({
-  baseURL: "http://localhost:8081",
+  baseURL: process.env.VUE_APP_API_URL,
 });
 
 createApp(App).use(pinia).mount("#app");
