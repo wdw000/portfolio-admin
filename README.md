@@ -1,4 +1,9 @@
-# vue-type-portfolio
+# Portfolio Admin
+
+## Create .env
+```
+VUE_APP_API_URL = YOUR API URL ex) https://example.com
+```
 
 ## Project setup
 ```
